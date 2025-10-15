@@ -60,7 +60,7 @@ public class LittleFish : MonoBehaviour
     void Start()
     {
 
-        Lifetime = Random.Range(5000, 7000);
+        Lifetime = Random.Range(3000, 4000); //does work, easy to check if you change to 300-400
         targetPos = getTargetPos();
         
         foundClam = GameObject.FindGameObjectWithTag("clam");
