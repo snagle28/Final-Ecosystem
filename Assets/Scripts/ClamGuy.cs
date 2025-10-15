@@ -77,7 +77,7 @@ public class ClamGuy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        print(oxygenLevels);
         updateOxlevels();
         //booleans for controlling the animation:
         //note that this has to be constantly checked so it goes in update
@@ -181,14 +181,14 @@ public class ClamGuy : MonoBehaviour
             
             
             //set range of length in between shakes
-            shakeTimerMax = Random.Range(500,1000);
+            shakeTimerMax = Random.Range(1500,1900);
            
             transform.position = startPos;
             shakeAmplitude = shakeAmpMax;
 
             if (bubbles.isPlaying == false) 
             {
-                bubbles.Play();
+                bubbles.Play(); 
             }
             else if (!bubbles.isPlaying)
             {
@@ -303,24 +303,26 @@ public class ClamGuy : MonoBehaviour
 
     public double oxygenMin;
     public double oxygenMax;
-    public float oxygenChangeSpeed = 15f;
+    public float oxygenChangeSpeed = 30f;
     public float oxygenRandomness = 5f;
     
     public double updateOxlevels()
-    {
+    { 
+        
         float oxChange = oxygenChangeSpeed * Time.deltaTime;
         if (pauseShake)
         {
+            //supposed to update oxygen
             oxygenLevels += oxChange;
         }
-        else{ oxygenLevels -= oxChange;
+        else{ oxygenLevels -= (0.1 * oxChange);
         }
         
         oxygenLevels += Random.Range(-oxygenRandomness, oxygenRandomness) * Time.deltaTime;
         //use CASTING like in intro to CS (works bc its double to float)?
         oxygenLevels = Mathf.Clamp((float)oxygenLevels, (float)oxygenMin, (float)oxygenMax);
         
-        return oxygenLevels;
+        return oxygenLevels; 
     }
 
     void Born()

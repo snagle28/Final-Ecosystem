@@ -60,7 +60,7 @@ public class LittleFish : MonoBehaviour
     void Start()
     {
 
-        Lifetime = Random.Range(3000, 4000); //does work, easy to check if you change to 300-400
+        Lifetime = Random.Range(5000, 7000); //does work, easy to check if you change to 300-400
         targetPos = getTargetPos();
         
         foundClam = GameObject.FindGameObjectWithTag("clam");
@@ -80,7 +80,7 @@ public class LittleFish : MonoBehaviour
         }
 
         spawnOffset = Random.Range(-50f, 50f);
-        spawnDelay = Random.Range(0.5f, 3f);
+        spawnDelay = Random.Range(90,500);
         spawnTimer = Random.Range(0f, spawnDelay);
 
     }
@@ -104,7 +104,7 @@ public class LittleFish : MonoBehaviour
                 break;
             case FishyStates.swimming:
                 SwimAround();
-                if (cScript != null && daysAlive > Random.Range(300,500) && cScript.oxygenLevels > 200 && canSpawn)
+                if (cScript != null && daysAlive > Random.Range(100,700) && cScript.oxygenLevels > 150 && canSpawn)
                 {
                     spawnTimer += Time.deltaTime;
                     if (spawnTimer >= spawnDelay)

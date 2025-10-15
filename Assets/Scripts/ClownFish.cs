@@ -10,24 +10,11 @@ public class ClownFish: MonoBehaviour
 {
     private int daysAlive = 0;
 
-    private int Lifetime = 1000;
+    private int Lifetime;
     //ROTATION STUFF
-    [SerializeField] private float rotationSpeed = 1f;
-    [SerializeField] private Transform rotateAround;
+    private float rotationSpeed = 180f;
     private bool autoRotate = false;
     
-    
-    [SerializeField]
-    Transform[] possibleTargets; //array of spots the spider can idle between
-
-    [SerializeField]
-    float lerpTimeMax; //appr. how long we want a lerp to last
-
-    [SerializeField]
-    AnimationCurve idleWalkCurve; //anim curve to add easing to the lerp
-
-    [SerializeField]
-    float hungerStep; //max time we want to wait to deincrement hunger
 
     Transform target = null; //current spot we're moving towards
 
@@ -38,7 +25,7 @@ public class ClownFish: MonoBehaviour
     public float degrees;
     private float hideTimer = 0;
     private float stareTimer = 0;
-    [SerializeField] private float maxHideTime;
+    private float maxHideTime = 900;
     private float maxStareTime = 100;
     private bool atTurnAngle = false;
     private bool atSwimAngle = true;
@@ -78,8 +65,9 @@ public class ClownFish: MonoBehaviour
     void Start()
     {
         FindAllFood(); //find all food objs in the scene
-        hungerTime = hungerStep; //reset our hunger timer
         startPos = transform.position;
+        Lifetime = Random.Range(3000, 3500);
+
     }
 
     void Update()
@@ -91,13 +79,14 @@ public class ClownFish: MonoBehaviour
             state = FishStates.dying;
         }
         hideTimer++;
-        //print("state = " + state);
+       
         switch (state)
         {
             case FishStates.swimming: //if we're in the idle state
                 Swim(); //run idle code
                 break;
-            case FishStates.turning: //if we're in the eating state
+            case FishStates.turning:
+                hideTimer = 0;//if we're in the eating state
                 TurnToFood(); //run eating code
                 break;
             case FishStates.looking:
@@ -213,8 +202,8 @@ public class ClownFish: MonoBehaviour
         //
         if (Quaternion.Angle(transform.rotation, targetRotation) <= 1f)
         {
+            transform.localRotation = Quaternion.Euler(0f,0f,targetRotation.eulerAngles.z);
             stareTimer = 0;
-            
             
             //turn BACK 
             state = FishStates.looking;
@@ -250,6 +239,7 @@ public class ClownFish: MonoBehaviour
         
         if (Quaternion.Angle(transform.rotation, beginningRotation) <= 1f)
         {
+            transform.rotation = beginningRotation;
             state = FishStates.swimming;
             hideTimer = 0;
         }
