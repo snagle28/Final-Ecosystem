@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ace2dabd7af623c4a9ff659adac3691e, type: 3}
+  m_Name: greenEgg
+  m_EditorClassIdentifier: 
+  eggSprite: {fileID: -360671901160182495, guid: ce4ddfc8615a1e14189a4a59328310e8, type: 3}
+  eggName: greenEgg
+  dropChance: 60
