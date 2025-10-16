@@ -1,2 +1,5 @@
 # Final-Ecosystem
 My goal for this project was to create some kind of tide pool / ocean shallows ecosystem. I was really excited about the idea of doing it from the side view to create a sense of depth (with the clam on the bottom and the minnows on top), but rotating the objects in the way that I wanted to turned out to be way harder than I thought. I ended up majorly over-scoping and struggling to debug a lot of my rotation problems. On the flip side, I learned a lot about making classes, and I had a lot of fun coding the pearl drop system (and using ternary if-statements). Overall I think the project could definitely be improved- there are a couple small bugs that i simply couldn't figure out how to fix. However, I'm happy with all of the time and effor that I put in, because I learned more from this project than any other.
+
+
+Also: all art/graphics sourced by and edited in Canva
