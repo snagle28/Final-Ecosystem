@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5429150884145996255}
   m_Layer: 0
   m_Name: Waypoint8
-  m_TagString: Untagged
+  m_TagString: waypoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: 27b48fe4e4b9f0c4da59dfd16a4ec7fa, type: 3}
-  m_Color: {r: 0.8805031, g: 0.19105244, b: 0.19105244, a: 0.25882354}
+  m_Color: {r: 0.8805031, g: 0.19105244, b: 0.19105244, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

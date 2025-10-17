@@ -87,7 +87,10 @@ public class ClownFish: MonoBehaviour
                 break;
             case FishStates.turning:
                 hideTimer = 0;//if we're in the eating state
-                TurnToFood(); //run eating code
+                if (allFood.Count > 0)
+                {
+                    TurnToFood();
+                } //run eating code
                 break;
             case FishStates.looking:
                 Look();
@@ -104,8 +107,8 @@ public class ClownFish: MonoBehaviour
     }
 
     
-    [SerializeField] private float range;
-    [SerializeField] private float swimSpeed;
+    private float range = 1.9f;
+    private float swimSpeed = 1.5f;
     private bool movingRight = true;
     
     void Swim()
@@ -155,9 +158,10 @@ public class ClownFish: MonoBehaviour
             }
         }
     }
-
+    
     void TurnToFood()
     {
+        print("turning towards");
         bool facingRight = transform.localScale.x > 0;
         //bool facingLeft = transform.localScale.x < 0;
         Vector3 targetFood = FindNearest(allFood).transform.position;
@@ -200,11 +204,9 @@ public class ClownFish: MonoBehaviour
         // transform.rotation = Quaternion.Euler(0, 0, angle-180);
         // // //stop rotating once you get close enough
         //
-        if (Quaternion.Angle(transform.rotation, targetRotation) <= 1f)
+        if (Quaternion.Angle(transform.rotation, targetRotation) <= 3f)
         {
-            transform.localRotation = Quaternion.Euler(0f,0f,targetRotation.eulerAngles.z);
             stareTimer = 0;
-            
             //turn BACK 
             state = FishStates.looking;
         }
@@ -214,6 +216,7 @@ public class ClownFish: MonoBehaviour
 
     void Look()
     {
+        atTurnAngle = false;
         //INCREMENT STARE TIMER/////
         stareTimer++;
         if (stareTimer >= maxStareTime)
@@ -224,7 +227,7 @@ public class ClownFish: MonoBehaviour
 
     void TurnBack()
     {
-        
+        print("turning back");
         //turn back if needed//
         bool facingRight = transform.localScale.x > 0;
         Vector3 targetFood = FindNearest(allFood).transform.position;
@@ -239,7 +242,7 @@ public class ClownFish: MonoBehaviour
         
         if (Quaternion.Angle(transform.rotation, beginningRotation) <= 1f)
         {
-            transform.rotation = beginningRotation;
+            //transform.rotation = beginningRotation;
             state = FishStates.swimming;
             hideTimer = 0;
         }
@@ -248,7 +251,7 @@ public class ClownFish: MonoBehaviour
 
     //vars for fade out
     private SpriteRenderer sr;
-    [SerializeField] private float fadeInDuration = 1.5f;
+    private float fadeInDuration = 1.5f;
     private float fadeTimer = 0f;
     void Die()
     {
